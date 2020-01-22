@@ -6,7 +6,7 @@
 /*   By: jirwin <jirwin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 12:34:02 by jirwin            #+#    #+#             */
-/*   Updated: 2020/01/22 20:19:09 by rjeraldi         ###   ########.fr       */
+/*   Updated: 2020/01/22 20:52:48 by jirwin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	read_file(char *file_name, t_fdf *data)
 	data->angle = 0.8;
 	data->height = get_height(file_name);
 	data->width = get_width(file_name);
-	if (data->height <= 2 && data->width <= 2)
+	if (!(data->height >= 2 && data->width >= 2))
 		error();
 	data->z_matrix = (int **)malloc(sizeof(int *) * (data->height + 1));
 	i = 0;

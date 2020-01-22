@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjeraldi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jirwin <jirwin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 19:25:39 by rjeraldi          #+#    #+#             */
-/*   Updated: 2020/01/22 20:15:42 by rjeraldi         ###   ########.fr       */
+/*   Updated: 2020/01/22 20:40:51 by jirwin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	free_check_height(char **strarray1, char **strarray2)
 
 void	error(void)
 {
-	ft_putstr("error\n");
+	ft_putstr("error: invalid map\n");
 	exit(1);
 }
 

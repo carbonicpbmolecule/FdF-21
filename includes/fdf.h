@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rjeraldi <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jirwin <jirwin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 18:44:24 by rjeraldi          #+#    #+#             */
-/*   Updated: 2020/01/22 20:15:10 by rjeraldi         ###   ########.fr       */
+/*   Updated: 2020/01/22 20:34:51 by jirwin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@
 # include <math.h>
 # include <fcntl.h>
 
-# define UP_KEY 125
-# define DOWN_KEY 126
-# define RIGHT_KEY 123
-# define LEFT_KEY 124
+# define UP_KEY 126
+# define DOWN_KEY 125
+# define RIGHT_KEY 124
+# define LEFT_KEY 123
 # define ESCAPE 53
 # define PLUS 24
 # define MINUS 27
 # define NUM4 21
 # define NUM5 23
-# define NUM6 24
+# define NUM6 22
 
 typedef struct
 {

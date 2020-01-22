@@ -6,7 +6,7 @@
 /*   By: jirwin <jirwin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 12:25:48 by jirwin            #+#    #+#             */
-/*   Updated: 2020/01/22 20:18:48 by rjeraldi         ###   ########.fr       */
+/*   Updated: 2020/01/22 20:37:20 by jirwin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ int		deal_key(int key, t_fdf *data)
 		data->zoom += 5;
 	if ((key == MINUS) && (data->zoom > 5))
 		data->zoom -= 5;
-	if (key == DOWN_KEY)
-		data->shift_y -= 20;
 	if (key == UP_KEY)
+		data->shift_y -= 20;
+	if (key == DOWN_KEY)
 		data->shift_y += 20;
-	if (key == RIGHT_KEY)
-		data->shift_x -= 20;
 	if (key == LEFT_KEY)
+		data->shift_x -= 20;
+	if (key == RIGHT_KEY)
 		data->shift_x += 20;
 	if (key == NUM4 && (data->angle = 0.8))
 		data->is_iso = (data->is_iso == 0) ? 1 : 0;
