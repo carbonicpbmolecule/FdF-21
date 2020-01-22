@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rjeraldi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 18:30:39 by rjeraldi          #+#    #+#             */
-/*   Updated: 2020/01/22 18:31:34 by rjeraldi         ###   ########.fr       */
+/*   Created: 2020/01/22 18:44:24 by rjeraldi          #+#    #+#             */
+/*   Updated: 2020/01/22 20:15:10 by rjeraldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <math.h>
 # include <fcntl.h>
 
-# define MAX(a, b) (a > b ? a : b)
-# define MOD(a) ((a < 0) ? -a : a)
 # define UP_KEY 125
 # define DOWN_KEY 126
 # define RIGHT_KEY 123
@@ -44,7 +42,7 @@ typedef struct
 	float		angle;
 	void		*mlx_ptr;
 	void		*win_ptr;
-}				fdf;
+}				t_fdf;
 
 typedef struct	s_xy
 {
@@ -52,11 +50,15 @@ typedef struct	s_xy
 	float		y;
 }				t_xy;
 
-void			read_file(char *file_name, fdf *data);
-void 			bresenham(t_xy xy0, t_xy xy1, fdf *data);
-void			draw(fdf *data);
-void 			free_z_matrix(fdf *data);
-
-#include <stdio.h>
+int				is_digit(char c);
+void			read_file(char *file_name, t_fdf *data);
+void			bresenham(t_xy xy0, t_xy xy1, t_fdf *data);
+void			draw(t_fdf *data);
+void			free_matrix(t_fdf *data);
+void			free_z_matrix(t_fdf *data);
+void			free_strarray(char **strarray);
+void			free_check_height(char **strarray1, char **strarray2);
+void			error(void);
+void			quit(t_fdf *data);
 
 #endif

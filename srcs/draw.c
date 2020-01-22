@@ -6,35 +6,36 @@
 /*   By: jirwin <jirwin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 12:56:49 by jirwin            #+#    #+#             */
-/*   Updated: 2020/01/22 17:18:23 by jirwin           ###   ########.fr       */
+/*   Updated: 2020/01/22 20:18:10 by rjeraldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <fdf.h>
 
-void isometric(float *x, float *y, int z, float angle)
+int		isometric(float *x, float *y, int z, float angle)
 {
 	*x = (*x - *y) * cos(angle);
 	*y = (*x + *y) * sin(angle) - z;
+	return (1);
 }
 
-void zoom(float *x0, float *x1, float *y0, float *y1, fdf *data)
+void	zoom(t_xy *xy0, t_xy *xy1, t_fdf *data)
 {
-	*x0 *= data->zoom;
-	*x1 *= data->zoom;
-	*y0 *= data->zoom;
-	*y1 *= data->zoom;
+	xy0->x *= data->zoom;
+	xy1->x *= data->zoom;
+	xy0->y *= data->zoom;
+	xy1->y *= data->zoom;
 }
 
-void shift(float *x0, float *x1, float *y0, float *y1, fdf *data)
+void	shift(t_xy *xy0, t_xy *xy1, t_fdf *data)
 {
-	*x0 += data->shift_x;
-	*y0 += data->shift_y;
-	*x1 += data->shift_x;
-	*y1 += data->shift_y;
+	xy0->x += data->shift_x;
+	xy0->y += data->shift_y;
+	xy1->x += data->shift_x;
+	xy1->y += data->shift_y;
 }
 
-void bresenham(t_xy xy0, t_xy xy1, fdf *data)
+void	bresenham(t_xy xy0, t_xy xy1, t_fdf *data)
 {
 	float	x_step;
 	float	y_step;
@@ -44,17 +45,14 @@ void bresenham(t_xy xy0, t_xy xy1, fdf *data)
 
 	z0 = data->z_matrix[(int)xy0.y][(int)xy0.x];
 	z1 = data->z_matrix[(int)xy1.y][(int)xy1.x];
-	zoom(&xy0.x, &xy1.x, &xy0.y, &xy1.y, data);
+	zoom(&xy0, &xy1, data);
 	data->color = (z0 || z1) ? 0xe80c0c : 0xffffff;
-	if (data->is_iso)
-	{
-		isometric(&xy0.x, &xy0.y, z0, data->angle);
+	if (data->is_iso && (isometric(&xy0.x, &xy0.y, z0, data->angle)))
 		isometric(&xy1.x, &xy1.y, z1, data->angle);
-	}
-	shift(&xy0.x, &xy1.x, &xy0.y, &xy1.y, data);
+	shift(&xy0, &xy1, data);
 	x_step = xy1.x - xy0.x;
 	y_step = xy1.y - xy0.y;
-	max = MAX(MOD(x_step), MOD(y_step));
+	max = fmax(fabs(x_step), fabs(y_step));
 	x_step /= max;
 	y_step /= max;
 	while ((int)(xy0.x - xy1.x) || (int)(xy0.y - xy1.y))
@@ -65,7 +63,7 @@ void bresenham(t_xy xy0, t_xy xy1, fdf *data)
 	}
 }
 
-void draw(fdf *data)
+void	draw(t_fdf *data)
 {
 	t_xy	xy0;
 	t_xy	xy1;

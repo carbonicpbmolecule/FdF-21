@@ -6,7 +6,7 @@
 #    By: rjeraldi <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/21 21:58:57 by rjeraldi          #+#    #+#              #
-#    Updated: 2020/01/22 18:27:09 by rjeraldi         ###   ########.fr        #
+#    Updated: 2020/01/22 20:12:12 by rjeraldi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ DEPS = *.h
 DEPSDIR = includes
 SRC = main.c\
 	  draw.c\
-	  read_file.c
+	  read_file.c\
+	  free.c
 SRCDIR = srcs
 OBJ = $(SRC:.c=.o)
 CC = /usr/bin/gcc

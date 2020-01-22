@@ -6,35 +6,11 @@
 /*   By: jirwin <jirwin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 12:34:02 by jirwin            #+#    #+#             */
-/*   Updated: 2020/01/22 18:07:30 by jirwin           ###   ########.fr       */
+/*   Updated: 2020/01/22 20:19:09 by rjeraldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-
-void 	error(void)
-{
-	ft_putstr("error\n");
-	exit(1);
-}
-
-int		is_digit(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	else
-		return (0);
-}
-
-void	free_strarray(char **strarray)
-{
-	int		i;
-	
-	i = 0;
-	while (strarray[i] != NULL)
-		free(strarray[i++]);
-	free(strarray);
-}
+#include <fdf.h>
 
 void	check_height(char *line)
 {
@@ -42,15 +18,13 @@ void	check_height(char *line)
 	char	**height;
 	int		i;
 	int		j;
-	
-	words = ft_strsplit(line, ' ');
-	if (!(words[0]))
-			error();
+
+	if (!((words = ft_strsplit(line, ' '))[0]))
+		error();
 	i = 0;
 	while (words[i] != NULL)
 	{
-		height = ft_strsplit(words[i], ',');
-		if (!(height[0]))
+		if (!((height = ft_strsplit(words[i], ','))[0]))
 			error();
 		j = 0;
 		while (height[0][j] != '\0')
@@ -58,11 +32,7 @@ void	check_height(char *line)
 			if (!(is_digit(height[0][j++])))
 			{
 				if (height[0][0] != '-')
-				{
-					free_strarray(height);
-					free_strarray(words);
-					error();
-				}
+					free_check_height(height, words);
 			}
 		}
 		free_strarray(height);
@@ -76,9 +46,6 @@ int		get_height(char *file_name)
 	char	*line;
 	int		fd;
 	int		height;
-	int		i;
-	int		j;
-	char	**words;
 
 	fd = open(file_name, O_RDONLY, 0);
 	height = 0;
@@ -131,7 +98,7 @@ void	fill_matrix(int *z_line, char *line)
 	free(nums);
 }
 
-void	read_file(char *file_name, fdf *data)
+void	read_file(char *file_name, t_fdf *data)
 {
 	int		fd;
 	char	*line;

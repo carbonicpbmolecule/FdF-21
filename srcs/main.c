@@ -6,19 +6,13 @@
 /*   By: jirwin <jirwin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 12:25:48 by jirwin            #+#    #+#             */
-/*   Updated: 2020/01/22 18:33:44 by rjeraldi         ###   ########.fr       */
+/*   Updated: 2020/01/22 20:18:48 by rjeraldi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include <fdf.h>
 
-void	quit(fdf *data)
-{
-	mlx_clear_window(data->mlx_ptr, data->win_ptr);
-	exit(1);
-}
-
-int		deal_key(int key, fdf *data)
+int		deal_key(int key, t_fdf *data)
 {
 	if (key == ESCAPE)
 		quit(data);
@@ -45,30 +39,27 @@ int		deal_key(int key, fdf *data)
 	return (0);
 }
 
-void	free_matrix(fdf *data)
+int		is_digit(char c)
 {
-	int i;
-
-	i = 0;
-	while (i <= data->height)
-		free(data->z_matrix[i++]);
-	free(data->z_matrix);
-	free(data);
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
 }
 
 int		main(int argc, char **argv)
 {
-	fdf	*data;
+	t_fdf	*data;
 
 	if (argc != 2)
 	{
 		ft_putstr("usage: ./fdf map.fdf\n");
 		exit(1);
 	}
-	data = (fdf *)malloc(sizeof(fdf));
+	data = (t_fdf *)malloc(sizeof(t_fdf));
 	read_file(argv[1], data);
 	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 800, 600, "fdf");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 800, 600, "t_fdf");
 	data->zoom = 25;
 	data->shift_x = 300;
 	data->shift_y = 150;
