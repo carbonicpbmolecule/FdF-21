@@ -13,6 +13,9 @@
 # define ESCAPE 53
 # define PLUS 24
 # define MINUS 27
+# define NUM4 21
+# define NUM5 23
+# define NUM6 24
 
 typedef struct
 {

@@ -6,20 +6,22 @@
 /*   By: jirwin <jirwin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 12:25:48 by jirwin            #+#    #+#             */
-/*   Updated: 2020/01/22 17:19:09 by jirwin           ###   ########.fr       */
+/*   Updated: 2020/01/22 18:27:08 by jirwin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void	quit(fdf *data)
+{
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	exit(1);
+}
+
 int		deal_key(int key, fdf *data)
 {
-	// printf("%d\n", key);
 	if (key == ESCAPE)
-	{
-		mlx_clear_window(data->mlx_ptr, data->win_ptr);
-		exit(1);
-	}
+		quit(data);
 	if (key == PLUS)
 		data->zoom += 5;
 	if ((key == MINUS) && (data->zoom > 5))
@@ -32,15 +34,15 @@ int		deal_key(int key, fdf *data)
 		data->shift_x -= 20;
 	if (key == LEFT_KEY)
 		data->shift_x += 20;
-	if (key == 21 && (data->angle = 0.8))
+	if (key == NUM4 && (data->angle = 0.8))
 		data->is_iso = (data->is_iso == 0) ? 1 : 0;
-	if (key == 22 && (data->is_iso = 1))
-		data->angle += 0.1;
-	if (key == 23 && (data->is_iso = 1))
+	if (key == NUM5 && (data->is_iso = 1))
 		data->angle -= 0.1;
+	if (key == NUM6 && (data->is_iso = 1))
+		data->angle += 0.1;
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	draw(data);
-	return (0); 
+	return (0);
 }
 
 void	free_matrix(fdf *data)
